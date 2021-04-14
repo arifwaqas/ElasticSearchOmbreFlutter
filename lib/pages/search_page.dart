@@ -3,23 +3,6 @@ import 'package:ombre_search/widgets/custom_list_tile.dart';
 import 'package:ombre_search/widgets/bottom_nav_bar.dart';
 import 'package:ombre_search/widgets/custom_list_tile_def.dart';
 
-//Any list of data in JSON format or Using Firestore
-//I have avoided usage of firestore and directly hardcoded some sample data
-//But this data can be parsed from JSON too, it will behave in same way
-final artists = [
-  {"name": "Phillip Gem", "genre": "Blues | Soul"},
-  {"name": "Khalid Nurani", "genre": "Rock | RnB"},
-  {"name": "Metallica", "genre": "Metal | 2000s"},
-  {"name": "Linkin Park", "genre": "Rock"},
-  {"name": "Chainsmokers", "genre": "Electronic | New"},
-  {"name": "Dynasty", "genre": "Dance | Soul"},
-  {"name": "Airbenders", "genre": "Rock | Punk"},
-  {"name": "Foo Fighters", "genre": "Rock | 2002"},
-  {"name": "Fall Out Boys", "genre": "Rock | Alt"},
-  {"name": "Fearsome Foursome", "genre": "Groovy | Punk"},
-];
-//End of sample data
-
 class SearchPage extends StatelessWidget {
   final ScrollController _scrollController = ScrollController();
   @override
@@ -28,11 +11,22 @@ class SearchPage extends StatelessWidget {
       home: Scaffold(
         backgroundColor: Colors.black,
         appBar: AppBar(
-          backgroundColor: Colors.black,
-          title: Text("Search"),
+          leading: SizedBox(
+            width: 30,
+          ),
+          backgroundColor: Colors.white,
+          title: Text(
+            "Search",
+            style: TextStyle(
+              color: Colors.black,
+            ),
+          ),
           actions: <Widget>[
             IconButton(
-                icon: Icon(Icons.search),
+                icon: Icon(
+                  Icons.search,
+                  color: Colors.black,
+                ),
                 onPressed: () {
                   showSearch(context: context, delegate: ArtistSearch());
                 })
@@ -89,7 +83,10 @@ class ArtistSearch extends SearchDelegate<String> {
   Widget buildSuggestions(BuildContext context) {
     final suggestedArtists = query.isEmpty
         ? artists
-        : artists.where((q) => q["name"].startsWith(query)).toList();
+        : artists
+            .where(
+                (q) => q["name"].toLowerCase().startsWith(query.toLowerCase()))
+            .toList();
 
     return ListView.builder(
       itemBuilder: (context, index) => customListTile(
@@ -103,3 +100,20 @@ class ArtistSearch extends SearchDelegate<String> {
     );
   }
 }
+
+//Any list of data in JSON format or Using Firestore
+//I have avoided usage of firestore and directly hardcoded some sample data
+//But this data can be parsed from JSON too, it will behave in same way
+final artists = [
+  {"name": "Phillip Gem", "genre": "Blues | Soul"},
+  {"name": "Khalid Nurani", "genre": "Rock | RnB"},
+  {"name": "Metallica", "genre": "Metal | 2000s"},
+  {"name": "Linkin Park", "genre": "Rock"},
+  {"name": "Chainsmokers", "genre": "Electronic | New"},
+  {"name": "Dynasty", "genre": "Dance | Soul"},
+  {"name": "Airbenders", "genre": "Rock | Punk"},
+  {"name": "Foo Fighters", "genre": "Rock | 2002"},
+  {"name": "Fall Out Boys", "genre": "Rock | Alt"},
+  {"name": "Fearsome Foursome", "genre": "Groovy | Punk"},
+];
+//End of sample data
