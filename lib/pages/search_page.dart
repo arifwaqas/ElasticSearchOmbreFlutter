@@ -76,7 +76,9 @@ class ArtistSearch extends SearchDelegate<String> {
 
   @override
   Widget buildResults(BuildContext context) {
-    throw UnimplementedError();
+    return Container(
+      child: Text("Undeveloped, press back to go back"),
+    );
   }
 
   @override
