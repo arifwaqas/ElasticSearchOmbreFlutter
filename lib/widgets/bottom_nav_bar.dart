@@ -29,7 +29,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
             size: 30,
             color: Colors.white,
           ),
-          Icon(Icons.search, size: 35)
+          Icon(Icons.search, size: 35, color: Colors.white)
         ],
         onTap: (index) {},
         height: 60,

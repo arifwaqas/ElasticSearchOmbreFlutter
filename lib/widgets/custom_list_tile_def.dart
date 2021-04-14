@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget customListTile({String name, String genre, onTap, int queryLength}) {
+Widget customListTileDefault({String name, String genre, onTap}) {
   return Container(
     padding: EdgeInsets.all(8),
     child: Row(
@@ -30,21 +30,12 @@ Widget customListTile({String name, String genre, onTap, int queryLength}) {
             SizedBox(
               height: 10,
             ),
-            RichText(
-              text: TextSpan(
-                  text: name.substring(0, queryLength),
-                  style: TextStyle(
-                    fontSize: 19,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  children: [
-                    TextSpan(
-                        text: name.substring(queryLength),
-                        style: TextStyle(
-                          color: Colors.grey[600],
-                        ))
-                  ]),
+            Text(
+              name,
+              style: TextStyle(
+                fontSize: 18.0,
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ],
         )
