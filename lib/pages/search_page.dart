@@ -13,6 +13,7 @@ final artists = [
 ];
 
 class SearchPage extends StatelessWidget {
+  final ScrollController _scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -33,7 +34,10 @@ class SearchPage extends StatelessWidget {
         body: Container(
           color: Colors.white,
           child: Scrollbar(
+            isAlwaysShown: true,
+            controller: _scrollController,
             child: ListView.builder(
+              controller: _scrollController,
               itemBuilder: (context, index) => customListTile(
                   name: artists[index]["name"],
                   genre: artists[index]["genre"],
