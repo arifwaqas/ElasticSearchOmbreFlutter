@@ -34,9 +34,5 @@ class _MainPageState extends State<MainPage> {
   int index = 0;
 
   @override
-  Widget build(BuildContext context) => buildPages();
-
-  Widget buildPages() {
-    return SearchPage();
-  }
+  Widget build(BuildContext context) => SearchPage();
 }
